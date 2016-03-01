@@ -1,0 +1,10 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ pneu.title }}{% endblock %}
+
+{% block content %}
+<p>
+    <h2>{{ pneu.marque }} {{ pneu.taille }}</h2>
+    <p>{{ pneu.id }}</p>
+</p>
+{% endblock %}
