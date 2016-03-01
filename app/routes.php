@@ -10,4 +10,4 @@ $app->get('/', function () use ($app) {
 $app->get('/pneu/{id}', function ($id) use ($app) {
     $pneu = $app['dao.pneu']->find($id);
     return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu));
-})->bind('article');;
+})->bind('pneu');;

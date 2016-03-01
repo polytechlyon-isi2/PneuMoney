@@ -29,7 +29,7 @@ class PneuDAO extends DAO
      *
      * @param integer $id The pneu id.
      *
-     * @return \MicroCMS\Domain\pneu|throws an exception if no matching pneu is found
+     * @return \PneuMoney\Domain\pneu|throws an exception if no matching pneu is found
      */
     public function find($id) {
         $sql = "select * from t_pneu where pneu_id=?";
