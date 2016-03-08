@@ -9,25 +9,42 @@
     <title>PneuMoney - {% block title %}{% endblock %}</title>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ path('home') }}">PneuMoney</a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse-target">
-                </div>
-            </div><!-- /.container -->
-        </nav>
+  <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">Teddy Planet</a>
+              </div>
+
+              <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                  <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Marque <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        {% for marque in marques %}
+                          <li><a href="http://teddyplanet/marque/{{marque.id}}">{{marque.nom}}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  </ul>
+              </div>
+          </div><!-- /.container -->
+      </nav>
         <div id="content">{% block content %}{% endblock %}</div>
         <footer class="footer">
             <a href="https://github.com/polytechlyon-isi2/PneuMoney">PneuMoney</a> est un site de vente de pneus pour les grands et les petits
         </footer>
     </div>
+
+     <!-- jQuery -->
+      <script src="{{ app.request.basepath }}/lib/jquery/jquery-1.11.2.min.js"></script>
+      <!-- JavaScript Boostrap plugin -->
+      <script src="{{ app.request.basepath }}/lib/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>
