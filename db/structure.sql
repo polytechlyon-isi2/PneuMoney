@@ -4,5 +4,7 @@ create table t_pneu (
     pneu_id integer not null primary key auto_increment,
     pneu_marque varchar(100) not null,
     pneu_taille varchar(100) not null,
-    pneu_type varchar(100) not null
+    pneu_type varchar(100) not null,
+    pneu_prix double not null,
+    pneu_image varchar(1000) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;

@@ -4,9 +4,13 @@
 
 {% block content %}
 {% for pneu in pneus %}
-<pneu>
-    <h2><a class="pneuTitle" href="{{ path('pneu', { 'id': pneu.id }) }}">{{ pneu.marque}} {{ pneu.taille}}</a></h2>
-    <p>{{ pneu.id }}</p>
-</pneu>
+<div class="container">
+              <div class="jumbotron">
+                  <h1><a class="pneuTitle" href="{{ path('pneu', { 'id': pneu.id }) }}">{{ pneu.marque}} {{ pneu.taille}}</a></h1>
+                  <p>{{ pneu.id }}</p>
+                  <img src={{ app.request.basepath }}/{{pneu.image}} alt="arobas" class="col-xs-12 col-sm-4 col-md-3 col-lg-3" style="width:250px; height:250px;"/>
+                  <p>Ce pneu est genial comme tous les autres</p>
+              </div>
+            </div>
 {% endfor %}
 {% endblock %}

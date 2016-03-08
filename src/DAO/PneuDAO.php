@@ -53,6 +53,8 @@ class PneuDAO extends DAO
         $pneu->setMarque($row['pneu_marque']);
         $pneu->setTaille($row['pneu_taille']);
         $pneu->setType($row['pneu_type']);
+        $pneu->setPrix($row['pneu_prix']);
+        $pneu->setImage($row['pneu_image']);
         return $pneu;
     }
 }

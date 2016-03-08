@@ -32,6 +32,20 @@ class Pneu
      */
     private $type;
 
+    /**
+     * Pneu prix.
+     *
+     * @var double
+     */
+    private $prix;
+
+    /**
+     * Pneu image.
+     *
+     * @var string
+     */
+    private $image;
+
     public function getId() {
         return $this->id;
     }
@@ -62,5 +76,21 @@ class Pneu
 
     public function setType($type) {
         $this->type = $type;
+    }
+
+    public function getPrix() {
+        return $this->prix;
+    }
+
+    public function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
     }
 }
