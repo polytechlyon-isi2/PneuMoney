@@ -18,3 +18,7 @@ $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app['dao.pneu'] = $app->share(function ($app) {
     return new PneuMoney\DAO\PneuDAO($app['db']);
 });
+
+$app['dao.marque'] = $app->share(function ($app) {
+    return new PneuMoney\DAO\MarqueDAO($app['db']);
+});
