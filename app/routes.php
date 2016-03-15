@@ -11,10 +11,12 @@ $app->get('/', function () use ($app) {
 // Details sur un pneu
 $app->get('/pneu/{id}', function ($id) use ($app) {
     $pneu = $app['dao.pneu']->find($id);
-    return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu));
-})->bind('pneu');;
+    $marques = $app['dao.marque']->findAll();
+    return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu, 'marques' => $marques));
+})->bind('pneu');
 
 $app->get('/marque/{id}', function ($id) use ($app) {
     $marque = $app['dao.marque']->find($id);
-    return $app['twig']->render('marque.html.twig', array('marque' => $marque));
-})->bind('marque');;
+    $pneus = $app['dao.pneu']->findByMarque($marque->getNom());
+    return $app['twig']->render('marque.html.twig', array('marque' => $marque, 'pneus' => $pneus));
+})->bind('marque');

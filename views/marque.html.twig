@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ marque.nom }}{% endblock %}
+
+{% block content %}
+{% for pneu in pneus %}
+<div class="container">
+              <div class="jumbotron">
+                  <h1><a class="pneuTitle" href="{{ path('pneu', { 'id': pneu.id }) }}">{{ pneu.marque}} {{ pneu.taille}}</a></h1>
+                  <p>{{ pneu.id }}</p>
+                  <p>Ce pneu est genial comme tous les autres</p>
+              </div>
+            </div>
+{% endfor %}
+{% endblock %}

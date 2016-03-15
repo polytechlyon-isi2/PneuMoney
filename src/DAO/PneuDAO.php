@@ -25,6 +25,22 @@ class PneuDAO extends DAO
     }
 
     /**
+     *
+     *
+     * @return une liste de tous les pneus appartenant à une même marque.
+     */
+    public function findByMarque($marque){
+		$sql = 'SELECT * from t_pneu WHERE pneu_marque = \''.$marque.'\' ORDER BY pneu_id desc ';
+    $result = $this->getDb()->fetchAll($sql);
+    $pneus = array();
+		foreach ($result as $row) {
+            $pneuId = $row['pneu_id'];
+            $pneus[$pneuId] = $this->buildDomainObject($row);
+        }
+		return $pneus;
+	}
+
+    /**
      * Returns an pneu matching the supplied id.
      *
      * @param integer $id The pneu id.
