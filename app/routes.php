@@ -15,6 +15,7 @@ $app->get('/pneu/{id}', function ($id) use ($app) {
     return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu, 'marques' => $marques));
 })->bind('pneu');
 
+//Liste des pneus appartenant à une marque
 $app->get('/marque/{id}', function ($id) use ($app) {
     $marque = $app['dao.marque']->find($id);
     $pneus = $app['dao.pneu']->findByMarque($marque->getNom());

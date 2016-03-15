@@ -13,3 +13,10 @@ create table t_marque (
   `marque_id` integer not null primary key auto_increment,
   `marque_nom` varchar(20) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+drop table if exists t_client;
+create table t_client (
+  `client_mail` varchar(30) not null primary key,
+  `client_prenom` varchar(20) not null,
+  `client_nom` varchar(20) not null
+) engine=innodb character set utf8 collate utf8_unicode_ci;

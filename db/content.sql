@@ -14,3 +14,11 @@ insert into t_marque values
   (2, 'Firestone');
 insert into t_marque values
   (3, 'GoodYear');
+
+  truncate table t_client;
+  insert into t_client values
+    ('batman@batcave.bat', 'Bat', 'Man');
+  insert into t_client values
+    ('adrienromanet@hotmail.com', 'adrien', 'romanet');
+  insert into t_client values
+    ('johndoe@hotmail.com', 'john', 'doe');
