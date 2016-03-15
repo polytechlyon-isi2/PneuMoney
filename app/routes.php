@@ -18,5 +18,6 @@ $app->get('/pneu/{id}', function ($id) use ($app) {
 $app->get('/marque/{id}', function ($id) use ($app) {
     $marque = $app['dao.marque']->find($id);
     $pneus = $app['dao.pneu']->findByMarque($marque->getNom());
-    return $app['twig']->render('marque.html.twig', array('marque' => $marque, 'pneus' => $pneus));
+    $marques = $app['dao.marque']->findAll();
+    return $app['twig']->render('marque.html.twig', array('marque' => $marque, 'pneus' => $pneus, 'marques' => $marques));
 })->bind('marque');

@@ -19,6 +19,16 @@ class MarqueDAO extends DAO
       return $marques;
   }
 
+
+  public function find($id) {
+      $sql = 'select * from t_marque where marque_id = \''.$id.'\'';
+      $row = $this->getDb()->fetchAssoc($sql, array($id));
+      if ($row)
+          return $this->buildDomainObject($row);
+      else
+          throw new \Exception("Aucune marque ne correspond " . $id);
+  }
+
 protected function buildDomainObject($row) {
       $Marque = new Marque();
       $Marque->setId($row['marque_id']);
