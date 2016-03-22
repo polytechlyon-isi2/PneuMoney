@@ -39,6 +39,21 @@ class PneuDAO extends DAO
         }
 		return $pneus;
 	}
+     /**
+     *
+     *
+     * @return une liste de tous les pneus d'une même taille.
+     */
+    public function findByTaille($taille){
+		$sql = 'SELECT * from t_pneu WHERE pneu_taille = \''.$taille.'\' ORDER BY pneu_id desc ';
+    $result = $this->getDb()->fetchAll($sql);
+    $pneus = array();
+		foreach ($result as $row) {
+            $pneuId = $row['pneu_id'];
+            $pneus[$pneuId] = $this->buildDomainObject($row);
+        }
+		return $pneus;
+	}
 
     /**
      * Returns an pneu matching the supplied id.

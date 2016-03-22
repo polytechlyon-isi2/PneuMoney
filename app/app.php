@@ -22,3 +22,7 @@ $app['dao.pneu'] = $app->share(function ($app) {
 $app['dao.marque'] = $app->share(function ($app) {
     return new PneuMoney\DAO\MarqueDAO($app['db']);
 });
+
+$app['dao.taille'] = $app->share(function ($app) {
+    return new PneuMoney\DAO\TailleDAO($app['db']);
+});

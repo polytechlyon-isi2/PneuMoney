@@ -14,6 +14,14 @@ insert into t_marque values
   (2, 'Firestone');
 insert into t_marque values
   (3, 'GoodYear');
+  
+  truncate table t_taille;
+insert into t_taille values
+  ('petit');
+insert into t_taille values
+  ('standard');
+insert into t_taille values
+  ('large');
 
   truncate table t_client;
   insert into t_client values

@@ -14,6 +14,11 @@ create table t_marque (
   `marque_nom` varchar(20) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
+drop table if exists t_taille;
+create table t_taille (
+  `taille_nom` varchar(20) not null
+) engine=innodb character set utf8 collate utf8_unicode_ci;
+
 drop table if exists t_client;
 create table t_client (
   `client_mail` varchar(30) not null primary key,

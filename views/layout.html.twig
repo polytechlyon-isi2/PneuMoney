@@ -33,11 +33,25 @@
                     </li>
                   </ul>
               </div>
+              
+              <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                  <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Taille <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        {% for taille in tailles %}
+                          <li><a href="{{ path('taille', { 'nom': taille.nom }) }}">{{taille.nom}}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  </ul>
+              </div>
+              
           </div><!-- /.container -->
       </nav>
         <div id="content">{% block content %}{% endblock %}</div>
         <footer class="footer">
-            <a href="https://github.com/polytechlyon-isi2/PneuMoney">PneuMoney</a> est un site de vente de pneus pour les grands et les petits
+            <a href="https://github.com/polytechlyon-isi2/PneuMoney">PneuMoney</a> est un site de vente de pneus pour les grands et les petits.
         </footer>
     </div>
 
