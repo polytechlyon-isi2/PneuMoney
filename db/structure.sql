@@ -19,9 +19,13 @@ create table t_taille (
   `taille_nom` varchar(20) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
 
-drop table if exists t_client;
-create table t_client (
-  `client_mail` varchar(30) not null primary key,
-  `client_prenom` varchar(20) not null,
-  `client_nom` varchar(20) not null
+
+drop table if exists t_user;
+create table t_user (
+  `usr_mail` varchar(50) not null primary key,
+  `usr_prenom` varchar(50) not null,
+  `usr_nom` varchar(50) not null,
+  `usr_password` varchar(88) not null,
+  `usr_salt` varchar(23) not null,
+  `usr_role` varchar(50) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
