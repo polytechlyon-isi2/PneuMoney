@@ -14,7 +14,7 @@ insert into t_marque values
   (2, 'Firestone');
 insert into t_marque values
   (3, 'GoodYear');
-  
+
   truncate table t_taille;
 insert into t_taille values
   ('petit');
@@ -23,10 +23,7 @@ insert into t_taille values
 insert into t_taille values
   ('large');
 
-  truncate table t_client;
-  insert into t_client values
-    ('batman@batcave.bat', 'Bat', 'Man');
-  insert into t_client values
-    ('adrienromanet@hotmail.com', 'adrien', 'romanet');
-  insert into t_client values
-    ('johndoe@hotmail.com', 'john', 'doe');
+  truncate table t_user;
+  insert into t_user values
+    ('batman@hotmail.com', 'man', 'bat', '+qLA3F8wJCJc9pLBt1ARsLZypzhKFQFJaMsKZkiXfiyq1xXO3oY594r55PCnwbkiCXHXMpK/cmZMd37ElxdGkA==', 'ba951994555417e6dfea165', 'ROLE_USER');
+--vrai mot de passe : batman

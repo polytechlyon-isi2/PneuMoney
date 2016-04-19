@@ -75,3 +75,47 @@ $app->match('/newuser', function(Request $request) use ($app) {
         'tailles' => $tailles
 		));
 })->bind('newuser');
+
+//Edit a user
+$app->match('/edituser', function(Request $request) use ($app) {
+	$user = $app['security']->getToken()->getUser();
+  $edit = $user;
+    //$user = find($id);
+	//$user=loadUserByUsername($mail);
+	$userForm = $app['form.factory']->create(new PneuMoney\Form\Type\UserEdit(), $edit);
+	//$userForm = $app['form.factory']->update($user);
+    //$userForm = $app['form.factory']->create(new UserType(), $user);
+    $userForm->handleRequest($request);
+    $tailles = $app['dao.taille']->findAll();
+    $marques = $app['dao.marque']->findAll();
+    if ($userForm->isSubmitted() && $userForm->isValid()) {
+        // generate a random salt value
+        $salt = substr(md5(time()), 0, 23);
+        $edit->setSalt($salt);
+        $plainPassword = $edit->getPassword();
+        // find the default encoder
+        $encoder = $app['security.encoder.digest'];
+        // compute the encoded password
+        $password = $encoder->encodePassword($plainPassword, $edit->getSalt());
+        $edit->setPassword($password);
+		$edit->setMail($user->getMail());
+		//$edit->setPassword($user->getPassword());
+        $app['dao.user']->update($edit);
+    $app['session']->getFlashBag()->add('success', 'The user was succesfully edited.');
+	}
+  return $app['twig']->render('user_form.html.twig', array(
+        'title' => 'Edit User',
+        'userForm' => $userForm->createView(),
+        'marques'	=> $marques,
+        'tailles' => $tailles
+		));
+})->bind('edituser');
+
+  // Remove a user
+$app->get('/delete', function(Request $request) use ($app) {
+   	$id = $app['security']->getToken()->getUser()->getMail();
+    // Delete the user
+    $app['dao.user']->delete($id);
+    $app['session']->getFlashBag()->add('success', 'The user was succesfully removed.');
+    return $app->redirect('/');
+})->bind('deleteuser');

@@ -130,7 +130,7 @@ class UserDAO extends DAO implements UserProviderInterface
 	/**
      * Removes a user from the database.
      *
-     * @param @param integer $id The user id.
+     * @param @param $mail
      */
     public function delete($mail) {
         // Delete the user
