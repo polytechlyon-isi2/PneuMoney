@@ -47,7 +47,12 @@ $app['dao.taille'] = $app->share(function ($app) {
 $app['dao.user'] = $app->share(function ($app) {
     return new PneuMoney\DAO\UserDAO($app['db']);
 });
-
+$app['dao.panier'] = $app->share(function ($app) {
+    $panierDAO = new PneuMoney\DAO\PanierDAO($app['db']);
+    $panierDAO->setPneuDAO($app['dao.pneu']);
+    $panierDAO->setUserDAO($app['dao.user']);
+    return $panierDAO;
+});
 $app->register(new Silex\Provider\FormServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(

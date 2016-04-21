@@ -15,7 +15,8 @@ $app->get('/', function () use ($app) {
 $app->get('/pneu/{id}', function ($id) use ($app) {
     $pneu = $app['dao.pneu']->find($id);
     $marques = $app['dao.marque']->findAll();
-    return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu, 'marques' => $marques));
+    $tailles = $app['dao.taille']->findAll();
+    return $app['twig']->render('pneu.html.twig', array('pneu' => $pneu, 'marques' => $marques, 'tailles' => $tailles));
 })->bind('pneu');
 
 //Liste des pneus appartenant à une marque
@@ -119,3 +120,38 @@ $app->get('/delete', function(Request $request) use ($app) {
     $app['session']->getFlashBag()->add('success', 'The user was succesfully removed.');
     return $app->redirect('/');
 })->bind('deleteuser');
+
+$app->get('/soustraitPanier/{id}/{qtt}',function($id,$qtt) use ($app){
+  $app['dao.panier']->enleveArticle($id, $app['security']->getToken()->getUser()->getMail());
+  $tailles = $app['dao.taille']->findAll();
+  $marques = $app['dao.marque']->findAll();
+  $pneus =  $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
+  $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
+  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+});
+
+$app->get('/enlevePanier/{id}',function($id) use ($app){
+  $app['dao.panier']->supprimeArticle($id, $app['security']->getToken()->getUser()->getMail());
+  $tailles = $app['dao.taille']->findAll();
+  $marques = $app['dao.marque']->findAll();
+  $pneus = $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
+  $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
+  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+});
+
+$app->get('/panier', function() use ($app) {
+  $pneus =  $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
+  $tailles = $app['dao.taille']->findAll();
+  $marques = $app['dao.marque']->findAll();
+  $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
+  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+})->bind('panier');
+
+$app->get('/ajoutPanier/{id}/{qtt}', function($id,$qtt) use ($app){
+  $result = $app['dao.panier']->ajoutArticle($id, $app['security']->getToken()->getUser()->getMail(), $qtt);
+  $tailles = $app['dao.taille']->findAll();
+  $marques = $app['dao.marque']->findAll();
+  $pneus =  $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
+  $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
+  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+});

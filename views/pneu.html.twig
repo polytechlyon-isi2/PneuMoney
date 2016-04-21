@@ -10,6 +10,13 @@
                   <p>{{ pneu.id }}</p>
                   <img src="{{ app.request.basepath }}/images/{{pneu.image}}" />
                   <p>Ce pneu coute {{ pneu.prix }}</p>
+
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <a href="/ajoutPanier/{{pneu.id}}/1" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
+                  {% else %}
+                  <a href="{{ path('login') }}" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
+                  {% endif %}
+
               </div>
             </div>
 {% endblock %}

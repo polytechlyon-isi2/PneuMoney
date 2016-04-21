@@ -29,3 +29,10 @@ create table t_user (
   `usr_salt` varchar(23) not null,
   `usr_role` varchar(50) not null
 ) engine=innodb character set utf8 collate utf8_unicode_ci;
+
+drop table if exists t_panier;
+create table t_panier (
+  `pa_idPneu` integer not null,
+  `pa_mailUser` varchar(50) not null,
+  `pa_quantite` integer not null
+) engine=innodb character set utf8 collate utf8_unicode_ci;

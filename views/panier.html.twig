@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% set total = 0 %}
+<div class="jumbotron">
+  <div class="container">
+    <h2>Votre Panier</h2>
+    <table class="table">
+      <thread>
+        <tr>
+          <td></td>
+          <td><b>Marque du Pneu</b></td>
+          <td><b>Taille du Pneu</b></td>
+          <td><b>Quantité</b></td>
+          <td><b>Prix</b></td>
+          <td><b>Total</b></td>
+          <td><b>Opération</b></td>
+        </tr>
+      </thread>
+      <tbody>
+        {% for pneu in pneus %}
+        <tr>
+          <td><img src={{ app.request.basepath }}/{{pneu.image}} alt="arobas" style="width:30px; height:30px;" /></td>
+          <td>{{pneu.marque}} </td>
+          <td>{{pneu.taille}} </td>
+          <td>{{quantite[pneu.id]}}</td>
+          <td>{{pneu.prix}} €</td>
+          <td>{{pneu.prix*quantite[pneu.id]}} €</td>
+          <td><a href="/ajoutPanier/{{pneu.id}}/1" type="button" class="btn-success btn-sm glyphicon glyphicon-plus-sign green" ></a>
+              <a href="/soustraitPanier/{{pneu.id}}/1" type="button" class="btn-warning btn-sm glyphicon glyphicon-minus-sign blue"></a>
+              <a href="/enlevePanier/{{pneu.id}}" type="button" class="btn-danger btn-sm glyphicon glyphicon-remove-sign red"></a></td>
+          {% set total = total + pneu.prix*quantite[pneu.id] %}
+        </tr>
+        {% endfor %}
+      </tbody>
+      <thread>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td>{{total}} €</td>
+        </tr>
+      </thread>
+    </table>
+  </div>
+</div>
+{% endblock %}
