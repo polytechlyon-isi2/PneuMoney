@@ -127,7 +127,7 @@ $app->get('/soustraitPanier/{id}/{qtt}',function($id,$qtt) use ($app){
   $marques = $app['dao.marque']->findAll();
   $pneus =  $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
   $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
-  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+  return $app->redirect('../../panier');
 });
 
 $app->get('/enlevePanier/{id}',function($id) use ($app){
@@ -136,7 +136,7 @@ $app->get('/enlevePanier/{id}',function($id) use ($app){
   $marques = $app['dao.marque']->findAll();
   $pneus = $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
   $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
-  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+  return $app->redirect('../panier');
 });
 
 $app->get('/panier', function() use ($app) {
@@ -153,5 +153,5 @@ $app->get('/ajoutPanier/{id}/{qtt}', function($id,$qtt) use ($app){
   $marques = $app['dao.marque']->findAll();
   $pneus =  $app['dao.panier']->findProductByMail($app['security']->getToken()->getUser()->getMail());
   $quantite = $app['dao.panier']->findQuantiteByPneu($pneus, $app['security']->getToken()->getUser()->getMail());
-  return $app['twig']->render('panier.html.twig', array('pneus' => $pneus, 'marques' => $marques, 'tailles' => $tailles, 'quantite' => $quantite));
+  return $app->redirect('../../panier');
 });

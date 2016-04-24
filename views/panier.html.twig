@@ -28,9 +28,9 @@
           <td>{{quantite[pneu.id]}}</td>
           <td>{{pneu.prix}} €</td>
           <td>{{pneu.prix*quantite[pneu.id]}} €</td>
-          <td><a href="/ajoutPanier/{{pneu.id}}/1" type="button" class="btn-success btn-sm glyphicon glyphicon-plus-sign green" ></a>
-              <a href="/soustraitPanier/{{pneu.id}}/1" type="button" class="btn-warning btn-sm glyphicon glyphicon-minus-sign blue"></a>
-              <a href="/enlevePanier/{{pneu.id}}" type="button" class="btn-danger btn-sm glyphicon glyphicon-remove-sign red"></a></td>
+          <td><a href="ajoutPanier/{{pneu.id}}/1" type="button" class="btn-success btn-sm glyphicon glyphicon-plus-sign green" ></a>
+              <a href="soustraitPanier/{{pneu.id}}/1" type="button" class="btn-warning btn-sm glyphicon glyphicon-minus-sign blue"></a>
+              <a href="enlevePanier/{{pneu.id}}" type="button" class="btn-danger btn-sm glyphicon glyphicon-remove-sign red"></a></td>
           {% set total = total + pneu.prix*quantite[pneu.id] %}
         </tr>
         {% endfor %}
