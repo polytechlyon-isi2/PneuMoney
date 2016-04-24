@@ -5,18 +5,22 @@
 {% block content %}
 
 <div class="container">
-              <div class="jumbotron">
-                  <h2>{{ pneu.marque }} {{ pneu.taille }}</h2>
-                  <p>{{ pneu.id }}</p>
-                  <img src="{{ app.request.basepath }}/images/{{pneu.image}}" />
-                  <p>Ce pneu coute {{ pneu.prix }}</p>
-
-                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                  <a href="../ajoutPanier/{{pneu.id}}/1" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
-                  {% else %}
-                  <a href="{{ path('login') }}" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
-                  {% endif %}
-
-              </div>
-            </div>
+    <div style="padding-top: 50px;">
+      <div class="jumbotron" style="padding-top: 10px;">
+        <div class = "row">
+          <h2>{{ pneu.marque }} {{ pneu.taille }}</h2>
+          <div class="col-md-4">
+            <img src="{{ app.request.basepath }}/images/{{pneu.image}}" />
+          </div>
+          <div class = "pneuDesc col-md-offset-3 col-md-4">
+            <p> <b>Prix : </b>{{ pneu.prix }} €</br></p></div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <a href="../ajoutPanier/{{pneu.id}}/1" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
+            {% else %}
+              <a href="{{ path('login') }}" type="button" class="btn btn-danger row col-xs-5 col-sm-4 col-md-3 col-lg-3 col-md-offset-4">Acheter</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

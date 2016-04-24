@@ -6,6 +6,7 @@ h1{
   margin-left: 30px;
   margin-bottom: 20px;
   margin-top: 10px;
+  font-family:"Segoe print", Arial, Helvetica, sans-serif;
 }
 
 .footer {
@@ -21,4 +22,8 @@ h1{
 img {
     height: 40%;
     width: 40%;
+}
+
+.pneuDesc{
+  padding: 5px;
 }
